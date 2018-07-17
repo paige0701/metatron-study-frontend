@@ -1,0 +1,28 @@
+  <div class="row content">
+    <div class="col-sm-12 text-left">
+      <h1>Welcome this is User List</h1>
+      <table>
+        <colgroup>
+          <col width="*">
+          <col width="20%">
+          <col width="20%">
+        </colgroup>
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Code</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users" (click)="getUser(user)">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.code}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <button class="btn-info">Add</button>
+    </div>
+  </div>

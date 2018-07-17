@@ -1,0 +1,28 @@
+<div class="row content">
+  <div class="col-sm-12 text-left">
+    <h1>This is detail page</h1>
+    <table *ngIf="user">
+      <colgroup>
+        <col width="*">
+        <col width="20%">
+        <col width="20%">
+      </colgroup>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Code</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.code}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <hr>
+    <button class="btn-danger" (click)="deleteUser(user.id)">delete</button>
+  </div>
+</div>
