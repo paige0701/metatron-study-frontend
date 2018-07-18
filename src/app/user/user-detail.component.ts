@@ -1,23 +1,22 @@
 import {Component, ElementRef, Injector, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from './user.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {User} from '../domain/user/user';
+import {AbstractComponent} from '../abstract.component';
 
 @Component({selector : 'app-user-detail',
   templateUrl : './user-detail.component.html'})
-export class UserDetailComponent implements OnInit, OnDestroy {
+export class UserDetailComponent extends AbstractComponent implements OnInit, OnDestroy {
 
   public user: User;
   public userId : string;
-  public router : Router;
 
   constructor(protected elementRef : ElementRef,
               protected injector : Injector,
               protected userService : UserService,
               protected activatedRoute : ActivatedRoute,
-
               ) {
-    this.router = injector.get(Router);
+    super(elementRef, injector);
   }
 
 
@@ -34,8 +33,13 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  public deleteUser(id) {
-    this.userService.deleteUser(id).subscribe((result: User)=> {
+  /**
+   * Delete user
+   * @param {string} id
+   * @private
+   */
+  public deleteUser(id : string) {
+    this.userService.deleteUser(id).subscribe(()=> {
       this.router.navigate(['']);
     });
 
@@ -46,22 +50,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
    * @param {string} userId
    * @private
    */
-  private _getUserDetail(userId : string ) : void {
-    this.userService.getUserDetail(userId).subscribe((result: User)=> {
+  private _getUserDetail(id : string ) : void {
+    this.userService.getUserDetail(id).subscribe((result: User)=> {
       this.user = result;
     });
   }
 
-  // public getUsers () : void {
-  //   this.userService.getUsers().subscribe((result: User)=> {
-  //     console.info('result --> ', result);
-  //     this.users = result;
-  //   });
-  // }
-
-  // public getUser(user) : void {
-  //   user.id
-  //
-  // }
 
 }

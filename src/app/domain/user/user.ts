@@ -1,5 +1,5 @@
 export class User {
-  public name : String;
-  public code : String;
+  public name : string;
+  public code : string;
   public id : string;
 }

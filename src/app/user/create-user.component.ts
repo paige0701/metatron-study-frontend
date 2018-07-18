@@ -1,13 +1,12 @@
 import {Component, ElementRef, EventEmitter, Injector, OnDestroy, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
 import {UserService} from './user.service';
 import {User} from '../domain/user/user';
+import {AbstractComponent} from '../abstract.component';
 
 @Component({selector : 'create-user',
   templateUrl : './create-user.component.html'})
-export class CreateUserComponent implements OnInit, OnDestroy {
+export class CreateUserComponent extends AbstractComponent implements OnInit, OnDestroy {
 
-  public router : Router;
   public user: User;
   public name : string;
   public code : string;
@@ -15,10 +14,10 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   @Output()
   public doneEvent = new EventEmitter();
 
-
-  constructor(protected elementRef : ElementRef, protected injector : Injector, protected userService : UserService) {
-    this.router = injector.get(Router);
-
+  constructor(protected elementRef : ElementRef,
+              protected injector : Injector,
+              protected userService : UserService) {
+    super(elementRef, injector);
   }
 
 
