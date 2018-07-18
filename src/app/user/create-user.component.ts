@@ -28,7 +28,6 @@ export class CreateUserComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    console.info('hi');
     this.user = new User();
   }
 
@@ -38,7 +37,6 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     this.user.code = this.code;
 
     this.userService.createUser(this.user).subscribe((result) => {
-      console.info('result --> ', result);
       if (result) {
         this.doneEvent.emit();
       }

@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 export class UserComponent implements OnInit, OnDestroy {
 
   public router : Router;
-  public users: any;
+  public users: User[];
   public isCreateUser : boolean = false;
 
   constructor(protected elementRef : ElementRef, protected injector : Injector, protected userService : UserService) {
@@ -27,7 +27,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
 
   public getUsers () : void {
-    this.userService.getUsers().subscribe((result: User)=> {
+    this.userService.getUsers().subscribe((result: User[])=> {
       this.users = result;
     });
   }
@@ -40,6 +40,14 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public navigateToCreate() : void {
     this.isCreateUser = true;
+  }
+
+  public deleteUser(event, id) {
+    event.stopImmediatePropagation();
+    this.userService.deleteUser(id).subscribe((result) => {
+      this.getUsers();
+    });
+
   }
 
 }

@@ -36,7 +36,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   public deleteUser(id) {
     this.userService.deleteUser(id).subscribe((result: User)=> {
-      console.info('result --> ', result);
       this.router.navigate(['']);
     });
 
@@ -49,7 +48,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
    */
   private _getUserDetail(userId : string ) : void {
     this.userService.getUserDetail(userId).subscribe((result: User)=> {
-      console.info('result --> ', result);
       this.user = result;
     });
   }

@@ -6,12 +6,14 @@
           <col width="*">
           <col width="20%">
           <col width="20%">
+          <col width="10%">
         </colgroup>
         <thead>
         <tr>
           <th>Id</th>
           <th>Name</th>
           <th>Code</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -19,6 +21,8 @@
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
             <td>{{user.code}}</td>
+            <td>
+              <button (click)="deleteUser($event,user.id)" class="btn-danger">Del</button></td>
           </tr>
         </tbody>
       </table>

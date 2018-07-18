@@ -15,7 +15,7 @@ export class UserService extends AbstractService {
 
   public getUsers () {
 
-    return this.http.get<User>('http://localhost:8080/api/users')
+    return this.http.get<User[]>('http://localhost:8080/api/users')
 
   }
 
