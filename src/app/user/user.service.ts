@@ -11,6 +11,8 @@ export class UserService extends AbstractService {
     super();
   }
 
+
+
   public getUsers () {
 
     return this.http.get<User>('http://localhost:8080/api/users')
@@ -25,5 +27,13 @@ export class UserService extends AbstractService {
 
   public deleteUser (id : string) {
     return this.http.delete('http://localhost:8080/api/users/'+ id)
+  }
+
+  public createUser (user : User) {
+
+    let header = new HttpHeaders({
+      'Content-Type' : 'application/json'
+    });
+    return this.http.post('http://localhost:8080/api/users/', user)
   }
 }

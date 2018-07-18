@@ -1,15 +1,19 @@
-import {Component, ElementRef, Injector, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Injector, OnDestroy, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from './user.service';
+import {User} from '../domain/user/user';
 
 @Component({selector : 'create-user',
   templateUrl : './create-user.component.html'})
 export class CreateUserComponent implements OnInit, OnDestroy {
 
   public router : Router;
-  public users: any;
+  public user: User;
   public name : string;
   public code : string;
+
+  @Output()
+  public doneEvent = new EventEmitter();
 
 
   constructor(protected elementRef : ElementRef, protected injector : Injector, protected userService : UserService) {
@@ -24,11 +28,21 @@ export class CreateUserComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    console.info('hi')
+    console.info('hi');
+    this.user = new User();
   }
 
 
-  addUser() {
+  public addUser() {
+    this.user.name = this.name;
+    this.user.code = this.code;
+
+    this.userService.createUser(this.user).subscribe((result) => {
+      console.info('result --> ', result);
+      if (result) {
+        this.doneEvent.emit();
+      }
+    });
 
   }
 
