@@ -23,6 +23,7 @@
         </tbody>
       </table>
       <hr>
-      <button class="btn-info">Add</button>
+      <button class="btn-info" (click)="navigateToCreate()">Add</button>
     </div>
   </div>
+  <create-user *ngIf="isCreateUser"></create-user>

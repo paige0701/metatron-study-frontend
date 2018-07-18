@@ -5,15 +5,16 @@ import {UserService} from './user.service';
 import {CommonModule} from '@angular/common';
 import {UserDetailComponent} from './user-detail.component';
 import {CreateUserComponent} from './create-user.component';
+import { FormsModule } from '@angular/forms';
 
 const userRoutes : Routes = [
   {path : '' , component : UserComponent},
-  {path : ':id' , component : UserDetailComponent}
+  {path : ':id' , component : UserDetailComponent},
 ];
 
 
 @NgModule({
-  imports : [RouterModule.forChild(userRoutes),CommonModule],
+  imports : [RouterModule.forChild(userRoutes),CommonModule, FormsModule],
   declarations : [UserComponent, UserDetailComponent, CreateUserComponent
 ],
   providers : [UserService],

@@ -9,6 +9,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public router : Router;
   public users: any;
+  public isCreateUser : boolean = false;
 
   constructor(protected elementRef : ElementRef, protected injector : Injector, protected userService : UserService) {
     this.router = injector.get(Router);
@@ -27,7 +28,6 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public getUsers () : void {
     this.userService.getUsers().subscribe((result: User)=> {
-      console.info('result --> ', result);
       this.users = result;
     });
   }
@@ -36,6 +36,10 @@ export class UserComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/user',user.id]);
 
+  }
+
+  public navigateToCreate() : void {
+    this.isCreateUser = true;
   }
 
 }
